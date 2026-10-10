@@ -1,0 +1,106 @@
+.ask {
+  /* Never below 156px, or No would land on top of Yes */
+  --r: max(156px, min(280px, 34vw, 28vh));
+  --btn-w: 96px;
+  --btn-gap: 16px;
+
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Space is always reserved so the page doesn't jump when the gif appears */
+.ask-reaction {
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+
+  &.is-visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  img {
+    height: 130px;
+    width: auto;
+    border-radius: 16px;
+  }
+
+  p {
+    width: 100%;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--accent);
+  }
+}
+
+.ask-question {
+  margin: 8px 0 0;
+  text-align: center;
+}
+
+.ask-buttons {
+  display: flex;
+  gap: var(--btn-gap);
+  margin-top: 16px;
+}
+
+.ask-btn {
+  width: var(--btn-w);
+  padding: 12px 0;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 2px solid var(--accent);
+  cursor: pointer;
+}
+
+.ask-yes {
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 6px 16px var(--accent-shadow);
+  transition: transform 0.15s;
+  z-index: 1;
+
+  &:hover {
+    transform: scale(1.08);
+  }
+}
+
+.ask-no {
+  color: var(--accent);
+  background: #fff;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.25s ease-out;
+
+  /* Circles around the middle of the button row, so undo its offset from there */
+  &.is-moved {
+    transform: translate(
+      calc(var(--x) * var(--r) - (var(--btn-w) + var(--btn-gap)) / 2),
+      calc(var(--y) * var(--r))
+    );
+  }
+}
+
+.ask-btn:focus-visible {
+  outline: 3px solid var(--accent-shadow);
+  outline-offset: 3px;
+}

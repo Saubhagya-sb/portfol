@@ -1,0 +1,59 @@
+.message-page {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.message-page-heading {
+  text-align: center;
+  color: var(--brown);
+  /* Soft halo so the heading stays readable over the patterned background */
+  text-shadow:
+    0 0 12px var(--bg),
+    0 0 12px var(--bg),
+    0 0 24px var(--bg);
+}
+
+.message-page-content {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+
+  @media (max-width: 800px) {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 24px;
+  }
+}
+
+.message-page-photo {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  border: 2px solid var(--brown);
+  border-radius: 20px;
+  box-shadow: 0 6px 16px var(--brown-shadow);
+}
+
+.message-page-text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 32px;
+  font-size: 17px;
+  line-height: 165%;
+  color: var(--brown);
+  background: #fffbf7;
+  border: 2px solid var(--brown);
+  border-radius: 20px;
+  box-shadow: 0 6px 16px var(--brown-shadow);
+
+  @media (max-width: 800px) {
+    padding: 20px;
+    font-size: 16px;
+  }
+}
